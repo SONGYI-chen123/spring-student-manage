@@ -1,4 +1,4 @@
-package com.example.demo.domain.student.entity;
+package com.example.demo.presentation.vo;
 
 import com.example.demo.common.entity.Gender;
 import lombok.AllArgsConstructor;
@@ -7,14 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Student {
-    private String id;
-
+public class CreateStudentCommand {
     private String name;
 
     private Gender gender;

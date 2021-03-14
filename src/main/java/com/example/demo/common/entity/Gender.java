@@ -1,4 +1,4 @@
-package com.example.demo.domain.student.entity;
+package com.example.demo.common.entity;
 
 import lombok.Getter;
 
