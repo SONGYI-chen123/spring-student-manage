@@ -3,6 +3,7 @@ package com.example.demo.infrastructure.persistence.entity;
 import com.example.demo.common.entity.Gender;
 import com.querydsl.jpa.impl.JPAQuery;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "student")

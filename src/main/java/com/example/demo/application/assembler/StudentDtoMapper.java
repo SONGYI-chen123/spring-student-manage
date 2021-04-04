@@ -12,4 +12,6 @@ public interface StudentDtoMapper {
     StudentDtoMapper Mapper = getMapper(StudentDtoMapper.class);
 
     Student toStudent(StudentDto dto);
+
+    StudentDto toDto(Student student);
 }
