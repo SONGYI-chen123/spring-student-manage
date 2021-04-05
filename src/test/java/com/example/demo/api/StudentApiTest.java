@@ -65,6 +65,6 @@ public class StudentApiTest {
     public void should_get_students_success() throws Exception {
         mockMvc.perform(get("/students"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(2)));
+                .andExpect(jsonPath("$",hasSize(1)));
     }
 }
