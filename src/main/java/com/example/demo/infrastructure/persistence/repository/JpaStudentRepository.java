@@ -21,8 +21,9 @@ public interface JpaStudentRepository extends StudentRepository,
 
     default List<Student> findAllStudents() {
         QStudentPo studentPo = QStudentPo.studentPo;
+        QBean<Student> bean = Projections.bean(Student.class,studentPo.name,studentPo.age);
+        JPAQuery<Student> from = getJpaQueryFactory().select(bean).from(studentPo).where(studentPo.name.eq("sy"));
 
-        return getJpaQueryFactory().select(studentPo).from(studentPo).fetch().stream().map(mapper::toDo)
-                .collect(Collectors.toList());
+        return from.fetch();
     }
 }
