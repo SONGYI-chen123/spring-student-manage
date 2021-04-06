@@ -1,11 +1,12 @@
 package com.example.demo.domain.student.service;
 
-import com.example.demo.application.dto.StudentDto;
 import com.example.demo.domain.student.entity.Student;
 import com.example.demo.domain.student.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class StudentService {
@@ -20,6 +21,6 @@ public class StudentService {
     }
 
     public List<Student> getList() {
-        return studentRepository.findAllStudents();
+        return new ArrayList<>(studentRepository.findAllStudents().values());
     }
 }

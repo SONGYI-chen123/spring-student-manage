@@ -4,6 +4,8 @@ import com.example.demo.common.entity.Gender;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 public class StudentDto {
@@ -16,4 +18,6 @@ public class StudentDto {
     private Integer age;
 
     private String phoneNumber;
+
+    private List<CourseDto> courses;
 }
