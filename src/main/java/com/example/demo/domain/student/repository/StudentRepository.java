@@ -3,9 +3,10 @@ package com.example.demo.domain.student.repository;
 import com.example.demo.domain.student.entity.Student;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentRepository {
-    void saveStudent(Student student);
+    Student saveStudent(Student student);
 
-    List<Student> findAllStudents();
+    Map<String,Student> findAllStudents();
 }

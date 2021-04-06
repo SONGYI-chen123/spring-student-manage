@@ -1,7 +1,10 @@
 package com.example.demo.api;
 
 import com.example.demo.common.entity.Gender;
+import com.example.demo.domain.student.entity.Student;
+import com.example.demo.infrastructure.persistence.entity.CoursePo;
 import com.example.demo.infrastructure.persistence.entity.StudentPo;
+import com.example.demo.infrastructure.persistence.repository.JpaCourseRepository;
 import com.example.demo.infrastructure.persistence.repository.JpaStudentRepository;
 import com.example.demo.presentation.vo.CreateStudentCommand;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,12 +35,20 @@ public class StudentApiTest {
     @Autowired
     private JpaStudentRepository jpaStudentRepository;
 
+    @Autowired
+    private JpaCourseRepository jpaCourseRepository;
+
     @BeforeEach
     public void setup() {
         jpaStudentRepository.deleteAll();
-        StudentPo student1 = StudentPo.builder().name("s").age(18).gender(Gender.FEMALE).phoneNumber("11111111112")
+        jpaCourseRepository.deleteAll();
+        Student student1 = Student.builder().name("s").age(18).gender(Gender.FEMALE).phoneNumber("11111111112")
                 .build();
-        jpaStudentRepository.save(student1);
+        Student addStudent1 = jpaStudentRepository.saveStudent(student1);
+        CoursePo coursePo1 = CoursePo.builder().studentId(addStudent1.getId()).name("语文").semester("一年级上册").build();
+        jpaCourseRepository.save(coursePo1);
+        CoursePo coursePo2 = CoursePo.builder().studentId(addStudent1.getId()).name("数学").semester("一年级上册").build();
+        jpaCourseRepository.save(coursePo2);
         StudentPo student = StudentPo.builder().name("sy").age(18).gender(Gender.FEMALE).phoneNumber("11111111113")
                 .build();
         jpaStudentRepository.save(student);
@@ -65,6 +76,7 @@ public class StudentApiTest {
     public void should_get_students_success() throws Exception {
         mockMvc.perform(get("/students"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(2)));
+                .andExpect(jsonPath("$",hasSize(2)))
+                .andExpect(jsonPath("$[0].courses", hasSize(2)));
     }
 }
