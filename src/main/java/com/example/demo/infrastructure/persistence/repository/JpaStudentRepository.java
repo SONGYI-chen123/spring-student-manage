@@ -7,9 +7,9 @@ import com.example.demo.infrastructure.persistence.entity.QStudentPo;
 import com.example.demo.infrastructure.persistence.entity.StudentPo;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.QBean;
+import com.querydsl.jpa.impl.JPAQuery;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.example.demo.infrastructure.persistence.assembler.StudentDataMapper.mapper;
 
