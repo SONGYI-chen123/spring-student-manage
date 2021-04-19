@@ -4,6 +4,7 @@ import com.example.demo.application.service.StudentApplicationService;
 import com.example.demo.presentation.vo.CreateStudentCommand;
 import com.example.demo.presentation.vo.StudentResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 import static com.example.demo.presentation.assembler.StudentVoMapper.Mapper;
 
 @RestController
+@Validated
 @RequestMapping("/students")
 public class StudentController {
     private final StudentApplicationService studentApplicationService;

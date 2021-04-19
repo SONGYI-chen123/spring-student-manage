@@ -20,4 +20,6 @@ public class StudentDto {
     private String phoneNumber;
 
     private List<CourseDto> courses;
+
+    private ParentDto parent;
 }

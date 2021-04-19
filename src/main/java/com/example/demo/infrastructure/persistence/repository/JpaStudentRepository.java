@@ -15,7 +15,7 @@ import static com.example.demo.infrastructure.persistence.assembler.StudentDataM
 
 public interface JpaStudentRepository extends StudentRepository,
         JpaAndQueryDslExecutor<StudentPo, String> {
-    default Student saveStudent(Student student) {
+    default Student add(Student student) {
         StudentPo studentPo = mapper.toPo(student);
         this.save(studentPo);
         return mapper.toDo(studentPo);

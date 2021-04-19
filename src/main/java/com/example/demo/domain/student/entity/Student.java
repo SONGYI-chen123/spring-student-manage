@@ -26,4 +26,6 @@ public class Student {
     private String phoneNumber;
 
     private List<Course> courses;
+
+    private Parent parent;
 }

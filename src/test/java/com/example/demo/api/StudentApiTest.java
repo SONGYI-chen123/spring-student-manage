@@ -6,6 +6,7 @@ import com.example.demo.infrastructure.persistence.entity.CoursePo;
 import com.example.demo.infrastructure.persistence.entity.StudentPo;
 import com.example.demo.infrastructure.persistence.repository.JpaCourseRepository;
 import com.example.demo.infrastructure.persistence.repository.JpaStudentRepository;
+import com.example.demo.presentation.vo.CreateParentCommand;
 import com.example.demo.presentation.vo.CreateStudentCommand;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +45,7 @@ public class StudentApiTest {
         jpaCourseRepository.deleteAll();
         Student student1 = Student.builder().name("s").age(18).gender(Gender.FEMALE).phoneNumber("11111111112")
                 .build();
-        Student addStudent1 = jpaStudentRepository.saveStudent(student1);
+        Student addStudent1 = jpaStudentRepository.add(student1);
         CoursePo coursePo1 = CoursePo.builder().studentId(addStudent1.getId()).name("语文").semester("一年级上册").build();
         jpaCourseRepository.save(coursePo1);
         CoursePo coursePo2 = CoursePo.builder().studentId(addStudent1.getId()).name("数学").semester("一年级上册").build();
@@ -57,11 +58,19 @@ public class StudentApiTest {
     @Test
     @Order(1)
     public void should_create_student_success() throws Exception {
+        CreateParentCommand parent = CreateParentCommand.builder()
+                .name("parent")
+                .phoneNumber("11111111112")
+                .age(39)
+                .gender(Gender.FEMALE)
+                .workAddress("地球")
+                .build();
         CreateStudentCommand command = CreateStudentCommand.builder()
                 .name("syc")
                 .phoneNumber("11111111111")
                 .age(19)
                 .gender(Gender.FEMALE)
+                .parent(parent)
                 .build();
 
         ObjectMapper objectMapper = new ObjectMapper();
